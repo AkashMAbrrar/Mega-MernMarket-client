@@ -1,6 +1,8 @@
 import React from 'react';
 import { AppBar, Toolbar, styled, Box, Typography, } from '@mui/material';
 import logo from '../../assets/logo/bag.png'
+import Search from './Search';
+import CustomButtons from './CustomButtons';
 
 const StyledHeader = styled(AppBar)`
     background:#000059;
@@ -8,17 +10,21 @@ const StyledHeader = styled(AppBar)`
 `;
 
 const Component = styled(Box)`
-margin-left: 12%;
+margin-left: 3%;
 margin-top: 8px;
 padding: 10px;
 line-height: 0;
 `;
 const PlusLogo = styled('img')({
-    width: 15,
-    heightL: 10,
+    width: 20,
+    heightL: 20,
     marginBottom: 20,
     marginLeft: 5
 });
+
+const CustomButtonWrap = styled(Box)`
+  margin: 0 5% 0 auto;
+`
 
 
 const Header = () => {
@@ -28,7 +34,7 @@ const Header = () => {
     return (
         <div>
             <StyledHeader>
-                <Toolbar>
+                <Toolbar style={{ minHeight: 55 }}>
                     <Component>
                         <img src={logo} alt="Brand-Bazaar" style={{ width: 40, height: 40 }} />
                         <Box style={{ display: 'flex' }}>
@@ -37,6 +43,11 @@ const Header = () => {
                             <PlusLogo src={subURL} alt="" />
                         </Box>
                     </Component>
+                    <Search>
+                    </Search>
+                    <CustomButtonWrap>
+                        <CustomButtons></CustomButtons>
+                    </CustomButtonWrap>
                 </Toolbar>
             </StyledHeader>
         </div>
