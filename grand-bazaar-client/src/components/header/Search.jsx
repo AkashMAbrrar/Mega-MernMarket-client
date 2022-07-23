@@ -21,6 +21,7 @@ const SearchIconWrap = styled(Box)`
   color: Navy;
   padding: 5px;
   cursor: pointer;
+  display: flex;
 `;
 
 const Search = () => {
