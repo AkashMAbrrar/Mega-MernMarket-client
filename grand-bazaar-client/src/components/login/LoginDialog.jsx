@@ -1,7 +1,7 @@
 import { Dialog, Box, TextField, Typography, Button, styled } from '@mui/material';
 import React from 'react';
 import { useState, useContext } from 'react';
-import { authenticateSignup } from '../../service/api';
+import { authenticateSignup, authenticateLogin } from '../../service/api';
 import { DataContex } from '../../context/DataProvider';
 
 const Component = styled(Box)`
@@ -57,6 +57,11 @@ const CreateAccount = styled(Typography)`
    cursor: pointer;
 `;
 
+const Error = styled(Typography)`
+  font-size: 13px;
+  color: red;
+`;
+
 const accountInitialValue = {
     login: {
         view: 'login',
@@ -79,21 +84,28 @@ const signUpInitialValue = {
     phone: ''
 };
 
+const loginInitalValue = {
+    username: '',
+    password: ''
+}
+
 const LoginDialog = ({ open, setOpen }) => {
 
     const [account, toggleAccount] = useState(accountInitialValue.login);
     const [signup, setSignup] = useState(signUpInitialValue);
+    const [login, setLogin] = useState(loginInitalValue);
+    const [error, setError] = useState(false);
 
     const { setAccount } = useContext(DataContex);
 
     const handleClose = () => {
         setOpen(false);
         toggleAccount(accountInitialValue.login);
+        setError(false);
     }
 
     const toggleSignup = () => {
         toggleAccount(accountInitialValue.signup);
-        console.log(signup)
     };
 
     const onInputChange = (e) => {
@@ -105,7 +117,23 @@ const LoginDialog = ({ open, setOpen }) => {
         if (!response) return;
         handleClose();
         setAccount(signup.firstname);
-    }
+    };
+
+    const onValueChange = (e) => {
+        setLogin({ ...login, [e.target.name]: e.target.value });
+    };
+
+    const loginUser = async () => {
+        let response = await authenticateLogin(login);
+        console.log(response);
+        if (response.status === 200) {
+            handleClose();
+            setAccount(response.data.data.firstname);
+        } else {
+            setError(true);
+        }
+    };
+
 
 
 
@@ -119,10 +147,13 @@ const LoginDialog = ({ open, setOpen }) => {
                     </Image>
                     {account.view === 'login' ?
                         <Wrapper>
-                            <TextField variant="standard" label="Enter Your Email/Phone Number"></TextField>
-                            <TextField variant="standard" label="Enter Your Password"></TextField>
+                            <TextField variant="standard" name='username' onChange={(e) => onValueChange(e)} label="Enter Your User Name"></TextField>
+                            {error &&
+                                <Error>Please Enter Valid Username Or Password</Error>
+                            }
+                            <TextField variant="standard" name='password' onChange={(e) => onValueChange(e)} label="Enter Your Password"></TextField>
                             <Text>By Continuing, You Agree To Grand Bazaar Terms of Use and Privecy Policy</Text>
-                            <LoginButton>Login</LoginButton>
+                            <LoginButton onClick={() => loginUser()}>Login</LoginButton>
                             <Typography style={{ textAlign: 'center' }}>Or</Typography>
                             <RequistOtp>Requist OTP</RequistOtp>
                             <CreateAccount onClick={() => toggleSignup()}>New To GrandBazar? Create An Account</CreateAccount>
