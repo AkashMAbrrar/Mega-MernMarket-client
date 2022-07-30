@@ -2,6 +2,9 @@ import { Box } from '@mui/material';
 import Banner from './Banner';
 import Navbar from './Navbar';
 import { styled } from '@mui/material';
+import { useEffect } from 'react';
+import { getProducts } from '../../redux/actions/productAction';
+import { useDispatch, useSelector } from 'react-redux';
 
 const Component = styled(Box)`
   padding: 10px;
@@ -9,6 +12,15 @@ const Component = styled(Box)`
 `;
 
 const Home = () => {
+
+    const { products } = useSelector(state => state.getProducts);
+    console.log(products);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getProducts());
+    }, [dispatch])
+
     return (
         <>
             <Navbar></Navbar>
