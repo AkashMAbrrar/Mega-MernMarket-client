@@ -4,6 +4,7 @@ import Navbar from './Navbar';
 import { styled } from '@mui/material';
 import { useEffect } from 'react';
 import { getProducts } from '../../redux/actions/productAction';
+import Slide from './Slide';
 import { useDispatch, useSelector } from 'react-redux';
 
 const Component = styled(Box)`
@@ -26,6 +27,7 @@ const Home = () => {
             <Navbar></Navbar>
             <Component>
                 <Banner></Banner>
+                <Slide products={products}></Slide>
             </Component>
         </>
     );
