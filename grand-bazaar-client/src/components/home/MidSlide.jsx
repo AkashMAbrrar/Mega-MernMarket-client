@@ -5,18 +5,24 @@ import Slide from './Slide';
 const Component = styled(Box)`
    display: flex;
 `;
-const LeftComponent = styled(Box)`
-   width: 80%;
-`;
+const LeftComponent = styled(Box)(({ theme }) => ({
+    width: '80%',
+    [theme.breakpoints.down('md')]: {
+        width: '100%'
+    }
+}));
 
-const RightComponent = styled(Box)`
-   background: #ffffff;
-   padding: 5px;
-   margin-top: 8px;
-   margin-left: 10px;
-   width: 17%;
-   text-align: center;
-`;
+const RightComponent = styled(Box)(({ theme }) => ({
+    background: '#ffffff',
+    padding: '5px',
+    marginTop: '8px',
+    marginLeft: '10px',
+    width: '17%',
+    textAlign: 'center',
+    [theme.breakpoints.down('md')]: {
+        display: 'none'
+    }
+}));
 
 const MidSlide = ({ products, title, timer }) => {
 
