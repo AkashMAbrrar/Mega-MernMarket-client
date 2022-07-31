@@ -6,7 +6,7 @@ const Component = styled(Box)`
    display: flex;
 `;
 const LeftComponent = styled(Box)`
-   width: 83%;
+   width: 80%;
 `;
 
 const RightComponent = styled(Box)`

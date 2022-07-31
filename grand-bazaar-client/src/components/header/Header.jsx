@@ -38,7 +38,7 @@ const Header = () => {
                     <Component>
                         <img src={logo} alt="Brand-Bazaar" style={{ width: 40, height: 40 }} />
                         <Box style={{ display: 'flex' }}>
-                            <Typography style={{ marginBottom: 15, fontWeight: 700, fontSize: 18, fontStyle: 'italic', color: '#FFA07A' }}>Grand Bazaar&nbsp; <Box component="span" style={{ color: '#FFD700' }}>Plus</Box>
+                            <Typography style={{ marginBottom: 15, fontWeight: 500, fontSize: 16, fontStyle: 'italic', color: '#FFA07A' }}>Grand Bazaar&nbsp; <Box component="span" style={{ color: '#FFD700' }}>Plus</Box>
                             </Typography>
                             <PlusLogo src={subURL} alt="" />
                         </Box>
