@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 
-const URL = 'http://localhost:5000';
+const URL = 'https://tranquil-cove-46631.herokuapp.com';
 
 export const authenticateSignup = async (data) => {
     try {
