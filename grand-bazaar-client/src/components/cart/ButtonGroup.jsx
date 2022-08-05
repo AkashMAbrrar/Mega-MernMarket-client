@@ -1,14 +1,22 @@
-import { Box, Button } from '@mui/material';
+import { ButtonGroup, styled, Button } from '@mui/material';
 import React from 'react';
 
-const ButtonGroup = () => {
+const Component = styled(ButtonGroup)`
+   margin-top: 30px;
+`;
+
+const StyledButton = styled(Button)`
+    border-radius: 50%;
+`;
+
+const GroupedButton = () => {
     return (
-        <Box>
-            <Button>-</Button>
-            <Button>1</Button>
-            <Button>+</Button>
-        </Box>
+        <Component>
+            <StyledButton>-</StyledButton>
+            <StyledButton disabled>1</StyledButton>
+            <StyledButton>+</StyledButton>
+        </Component>
     );
 };
 
-export default ButtonGroup;
+export default GroupedButton;

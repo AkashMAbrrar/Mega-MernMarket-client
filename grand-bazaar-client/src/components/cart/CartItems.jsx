@@ -1,16 +1,19 @@
 import { Box, Button, styled, Typography } from '@mui/material';
 import React from 'react';
 import { addEllipsis } from '../../utilis/commonUtils';
-
+import GroupedButton from './ButtonGroup';
 
 const Component = styled(Box)`
     border-top: 2px solid #f0f0f0;
     display: flex;
+    background: #fff;
 `;
 const LefComponent = styled(Box)`
     margin: 20px;
     font-size: 14px;
     margin-top: 10px;
+    display: flex;
+    flex-direction: column;
 `;
 
 const SmallText = styled(Typography)`
@@ -30,7 +33,8 @@ const CartItems = ({ item }) => {
     return (
         <Component>
             <LefComponent>
-                <img src={item.url} alt="item-img" />
+                <img src={item.url} alt="item-img" style={{ width: 100, height: 100 }} />
+                <GroupedButton></GroupedButton>
             </LefComponent>
             <Box style={{ margin: 20 }}>
                 <Typography>{addEllipsis(item.title.longTitle)}</Typography>
